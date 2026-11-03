@@ -1,4 +1,4 @@
-# Xiaomi Pad 5 (nabu) 14-Day Unbrick Forensics — From Error 20045 to UFS Physical Failure Verdict
+# pad5-nabu-unbrick-forensics (by Hermes agent AI)
 
 > **Case window**: 2026-10-18 → 2026-11-02 · Author: device owner, assisted end-to-end by an AI agent (Hermes)
 > **Final verdict**: UFS storage chip physically damaged (controller-level). All software recovery paths exhausted and documented.
@@ -10,7 +10,7 @@
 
 ## 00. TL;DR
 
-A Xiaomi Pad 5 (nabu, "Global" unit) died after a failed OTA: boot shows **"The system has been destroyed"**, Recovery is dead, only Fastboot survives. Over 14 days the owner — a complete hardware novice — ran a full forensic recovery with an AI agent driving the technical work:
+A Xiaomi Pad 5 (nabu, "Global" unit) died after a failed OTA: boot shows **"The system has been destroyed"**, Recovery is dead, only Fastboot survives. The owner — a complete hardware novice — ran a full forensic recovery with an AI agent driving the technical work:
 
 1. **Account-side walls**: error 20045 (region mismatch, unsolvable) → re-registered TW account → 20041 (fixed) → 20038 (Find Device lock, fixed) → 20031 (physical wall — needs bootable OS)
 2. **Authorized service center**: officially attempted re-flash — **failed** (record available via sister company)
