@@ -20,11 +20,11 @@
 ## 2. 实机操作流程
 
 ### 2.1 进 EDL + Mac 识别（★测试点位置 2026-10-25 已确认，见同目录 nabu_EDL_testpoint_egsm.jpg）
-1. 关机。**屏面拆解**（vrm24.com/instructions/how-to-disassemble-xiaomi-pad-5/ 有全步骤图文）：
+1. 关机。**屏面拆解**（拆机教程站/instructions/how-to-disassemble-xiaomi-pad-5/ 有全步骤图文）：
    - 加热屏幕约 70°C（吹风机高热绕边缘 2-3 分钟）→ 塑料片沿边缝滑开（浅，防排线）
    - 卸 1 颗 Phillips #000 螺丝 → 掀开金属支架 → **先断电池排线 BN61**
    - 断屏幕排线，移开屏幕
-2. 测试点：**主板中央偏右，两块银色屏蔽罩之间外露窄条上缘、紧邻橙色 FPC 排线（丝印 M514m/MAPEC）的正上方**——单颗镀金圆点（E-GSM 图黄圈处）。
+2. 测试点：**主板中央偏右，两块银色屏蔽罩之间外露窄条上缘、紧邻橙色 FPC 排线（丝印 M514m/MAPEC）的正上方**——单颗镀金圆点（图库站 图黄圈处）。
    XDA 实证（帖子 4553627）：有人只用**回形针**短接成功，无需 EDL 线
 3. 短接手法：镊子/回形针一端搭测试点、一端搭**就近屏蔽罩（接地）**——保持压住 → 插 USB 线 → 听到 Mac 识别声/约 5 秒后松开
 4. 检查：`ioreg -p IOUSB -l -w 0 | grep -iE '9008|QUSB'`（macOS 无需 QDLoader 驱动，libusb 直抓）
@@ -55,10 +55,10 @@ venv/bin/python edl.py reset
 | 风险 | 缓解 |
 |---|---|
 | 拆机断排线 | 屏面缓慢开，电池排线先断 |
-| patched firehose 被拒 | 回退 ROM 自带签名版（若设备认签）；再不行走 DroidWin/bkerler Loaders 找替代 |
+| patched firehose 被拒 | 回退 ROM 自带签名版（若设备认签）；再不行走 技术博客/bkerler Loaders 找替代 |
 | 误刷大陆包 | 只用 `…TKXMIXM…global…` 目录，文件名含 global 才准进 |
 | 数据全丢 | qfil 含 userdata 空镜像 = 清数据；保数据须刷前先 `edl.py r userdata out.bin`（12GB+，自行取舍） |
 
 ## 4. 退路
-- DIY 失败 → 维修店 EDL（靖展 04-2631-2849 / 龍貓 0982-220-362 / BIS 04-2631-6818，行情 NT$800–1,500）
+- DIY 失败 → 维修店 EDL（维修店A ***)***-2849 / 维修店B ***)***-**** / 维修店C ***)***-6818，行情 NT$800–1,500）
 - 维修店包：`~/workspace/edl/` 整目录 + 本 runbook（firehose+固件+命令全在）
