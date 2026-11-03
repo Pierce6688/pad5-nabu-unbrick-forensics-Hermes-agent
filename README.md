@@ -1,6 +1,6 @@
 # Xiaomi Pad 5 (nabu) 14-Day Unbrick Forensics — From Error 20045 to UFS Physical Failure Verdict
 
-> **Case window**: 2026-10-18 → 2026-11-02 · Region: Taiwan (Taichung) · Author: device owner, assisted end-to-end by an AI agent (Hermes)
+> **Case window**: 2026-10-18 → 2026-11-02 · Author: device owner, assisted end-to-end by an AI agent (Hermes)
 > **Final verdict**: UFS storage chip physically damaged (controller-level). All software recovery paths exhausted and documented.
 > **Why publish**: every step, every failed attempt, and every dead end is recorded so the next person with a bricked Pad 5 can reach the correct diagnosis in hours instead of weeks.
 
@@ -10,7 +10,7 @@
 
 ## 00. TL;DR
 
-A Xiaomi Pad 5 (nabu, "Global" unit bought from momo) died after a failed OTA: boot shows **"The system has been destroyed"**, Recovery is dead, only Fastboot survives. Over 14 days the owner — a complete hardware novice — ran a full forensic recovery with an AI agent driving the technical work:
+A Xiaomi Pad 5 (nabu, "Global" unit) died after a failed OTA: boot shows **"The system has been destroyed"**, Recovery is dead, only Fastboot survives. Over 14 days the owner — a complete hardware novice — ran a full forensic recovery with an AI agent driving the technical work:
 
 1. **Account-side walls**: error 20045 (region mismatch, unsolvable) → re-registered TW account → 20041 (fixed) → 20038 (Find Device lock, fixed) → 20031 (physical wall — needs bootable OS)
 2. **Authorized service center**: officially attempted re-flash — **failed** (record available via sister company)
@@ -26,7 +26,7 @@ A Xiaomi Pad 5 (nabu, "Global" unit bought from momo) died after a failed OTA: b
 | Item | Detail |
 |---|---|
 | Device | Xiaomi Pad 5, codename **nabu**, "international/Global" unit |
-| Purchase | momo (TW), seller claimed genuine Global — **likely CN hardware flashed with Global ROM** (see §05 root cause) |
+| Sales channel claim | Sold as genuine Global unit — **likely CN hardware flashed with Global ROM** (see §05 root cause) |
 | Serial | b03\*\*\*\*bb (masked) |
 | Failure | After an interrupted/failed OTA: boot → "The system has been destroyed"; Recovery → same error; **Fastboot → alive and stable** |
 | Pre-failure state | Normal daily use, no water/impact history |
@@ -86,7 +86,7 @@ Walls ①②③ are account-side (demolishable). Wall ④ is device-side — and
 - Bind +886 via the official checkSafePhone link → **pass**
 
 ### 4.3 Wall ③ 20038 — Find Device (the plot twist)
-- Re-running unlock: `20038 该手机已被账号 156***612 通过查找手机锁定`
+- Re-running unlock: `20038 该手机已被账号 1*********2 通过查找手机锁定`
 - At i.mi.com: "Remove device" in Device Management **is not enough** — the Find Device list still contained the Pad 5
 - Removed it in the Find Device section too → list verified clean → **pass**
 
@@ -103,10 +103,10 @@ Walls ①②③ are account-side (demolishable). Wall ④ is device-side — and
 
 ## 05. Action B — Authorized Service Center
 
-- Device sent to the **official Xiaomi service center** (Taichung) for re-flash
+- Device sent to the **official Xiaomi service center** for re-flash
 - Verdict: **could not process** (service record retrievable — sister company)
 - Significance: proves the official channel has **no exit** for this brick class either. The "just take it to official service" common wisdom is falsified for this failure mode.
-- Root cause of the original brick (purchasing layer): "momo Global" is very likely **CN hardware + flashed Global ROM**; OTA server mismatch → verification failure → dual-slot kill. **Buying advice: verify factory region = sales region (model sticker + NCC mark + first-boot language).**
+- Root cause of the original brick (purchasing layer): This "Global" unit is very likely **CN hardware + flashed Global ROM**; OTA server mismatch → verification failure → dual-slot kill. **Buying advice: verify factory region = sales region (model sticker + NCC mark + first-boot language).**
 
 ---
 
@@ -267,7 +267,7 @@ aria2c -x16 -s16 -k4M -o <file>.tgz <url> ; gzip -t <file>.tgz
 
 ### C. Test point (if Vol+ entry ever fails)
 
-Single gold pad on the motherboard's mid-right exposed strip, directly above the orange FPC marked **M514m/MAPEC**, between two silver EMI shields — short to the nearest shield (ground) with a paperclip while plugging USB. XDA thread 4553627 has a paperclip-only success report. Photo: [`nabu_EDL_testpoint_egsm.jpg`](nabu_EDL_testpoint_egsm.jpg) (credit: egsmtool).
+Single gold pad on the motherboard's mid-right exposed strip, directly above the orange FPC marked **M514m/MAPEC**, between two silver EMI shields — short to the nearest shield (ground) with a paperclip while plugging USB. XDA thread 4553627 has a paperclip-only success report. Photo: [`nabu_EDL_testpoint_egsm.jpg`](nabu_EDL_testpoint_egsm.jpg) (credit: a repair-community image archive).
 
 ### D. Windows-side quick card
 
@@ -315,7 +315,7 @@ This case was executed by a **hardware novice** (the device owner) working with 
 - bkerler/edl — the open-source EDL toolchain
 - erdilS/Port-Windows-11-Xiaomi-Pad-5 — patched firehose & EDL guide
 - XDA threads: Mi Pad 5 EDL Test Point (#4553627), Pad 6 EDL entry via Vol+ (#4744305), ufs_open failure cases (Mi 5 / Mi 8 / Mi 9T Pro / LG V30 — same signature)
-- egsmtool — test-point photography
-- xiaomirom.com / miuier data API — firmware index
+- a repair-community image archive — test-point photography
+- public firmware index sites — firmware index
 
 *All error codes, prices, store records, firmware hashes, and experiment results above are first-hand data from 2026-10-18 → 2026-11-02.*
